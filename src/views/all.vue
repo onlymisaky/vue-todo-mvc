@@ -1,23 +1,17 @@
 <template>
-  <todo-input v-model="title"
-    @enter="enter" />
+  <todo-header />
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 
-import TodoInput from "@/components/todo-input.vue";
+import TodoHeader from "@/components/todo-header.vue";
 
 @Component({
   components: {
-    TodoInput
+    TodoHeader
   }
 })
-export default class All extends Vue {
-  title: string = "";
-  enter(e: Event) {
-    console.log(e);
-  }
-}
+export default class All extends Vue {}
 </script>
 
