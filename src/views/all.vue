@@ -1,17 +1,28 @@
 <template>
-  <todo-header />
+  <section class="main">
+    <ul class="todo-list"
+      v-if="todoList.length">
+      <todo-list-item v-for="todo in todoList"
+        :key="todo.id"
+        :todo="todo" />
+    </ul>
+  </section>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Emit } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
+import { State } from "vuex-class";
 
-import TodoHeader from "@/components/todo-header.vue";
+import TodoListItem from "@/components/todo-list-item.vue";
+import { Todo } from "@/models/todo";
 
 @Component({
   components: {
-    TodoHeader
+    TodoListItem
   }
 })
-export default class All extends Vue {}
+export default class All extends Vue {
+  @State(state => state.todo.todoList)
+  todoList!: Todo[];
+}
 </script>
-

@@ -9,11 +9,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Emit, Model } from "vue-property-decorator";
+import { Vue, Component, Prop, Emit, Model } from "vue-property-decorator";
 
 @Component
 export default class TodoInput extends Vue {
-  @Model("change-value") private readonly value!: string;
+  @Model("change-value", { required: true })
+  private readonly value!: string;
+
   @Prop({
     required: false,
     default: "What needs to be done?"
@@ -35,4 +37,3 @@ export default class TodoInput extends Vue {
   }
 }
 </script>
-

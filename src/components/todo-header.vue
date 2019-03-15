@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
 import TodoInput from "@/components/todo-input.vue";
