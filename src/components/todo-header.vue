@@ -7,9 +7,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Emit } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 
 import TodoInput from "@/components/todo-input.vue";
+
+const TodoModule = namespace("todo");
 
 @Component({
   components: {
@@ -19,8 +22,11 @@ import TodoInput from "@/components/todo-input.vue";
 export default class TodoHeader extends Vue {
   title: string = "";
 
+  @TodoModule.Action
+  addTodo!: (title: string) => void;
+
   onAddTodo() {
-    this.$store.dispatch("addTodo", this.title);
+    this.addTodo(this.title);
     this.title = "";
   }
 }
