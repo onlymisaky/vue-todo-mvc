@@ -5,14 +5,14 @@
       <input type="checkbox"
         class="toggle"
         :checked="todo.completed"
-        @change="onToggleState">
+        @change="onToggle">
       <label @dblclick="onDbClick">{{todo.title}}</label>
       <button class="destroy"
-        @click="onDel"></button>
+        @click="onRemove"></button>
     </div>
     <input type="text"
       class="edit"
-      @blur="onModifyTitle"
+      @blur="onEdit"
       @keyup.esc="onCancelModify"
       :value="todo.title"
       ref="input">
@@ -22,7 +22,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import { Todo } from "@/models/todo";
+import { Todo, TodoStore } from "@/types/todo";
 
 const TodoModule = namespace("todo");
 
@@ -33,20 +33,27 @@ export default class TodoListItem extends Vue {
   })
   private readonly todo!: Todo;
 
-  @TodoModule.Action("modifyTodo")
-  modifyTodo!: (todo: Todo) => void;
+  @TodoModule.Action("toggleTodo")
+  toggleTodo!: TodoStore.DispatchToggleTodo;
 
-  @TodoModule.Action("delTodo")
-  delTodo!: (todo: Todo) => void;
+  @TodoModule.Action("editTitle")
+  editTitle!: TodoStore.DispatchEditTodoTitle;
+
+  @TodoModule.Action("removeTodo")
+  removeTodo!: TodoStore.DispatchRemoveTodo;
 
   editing: boolean = false;
   $refs!: {
     input: HTMLInputElement;
   };
 
-  onToggleState(e: Event) {
+  get id(): number {
+    return this.todo.id;
+  }
+
+  onToggle(e: Event) {
     const completed: boolean = (e.target as HTMLInputElement).checked;
-    this.modifyTodo({ ...this.todo, completed });
+    this.toggleTodo({ id: this.id, completed });
   }
   onDbClick(): void {
     this.editing = true;
@@ -54,17 +61,17 @@ export default class TodoListItem extends Vue {
       this.$refs.input.focus();
     });
   }
-  onModifyTitle(e: Event): void {
+  onEdit(e: Event): void {
     this.editing = false;
     const title: string = (e.target as HTMLInputElement).value;
-    this.modifyTodo({ ...this.todo, title });
+    this.editTitle({ id: this.id, title });
   }
   onCancelModify() {
     this.$refs.input.value = this.todo.title;
     this.editing = false;
   }
-  onDel(): void {
-    this.delTodo(this.todo);
+  onRemove(): void {
+    this.removeTodo(this.id);
   }
 }
 </script>

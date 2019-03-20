@@ -14,9 +14,23 @@ const routes: RouteConfig[] = [
     name: 'all',
     path: '/all',
     component: All
+  },
+  {
+    name: 'active',
+    path: '/active',
+    component: () => import('@/views/active.vue')
+  },
+  {
+    name: 'completed',
+    path: '/completed',
+    component: () => import('@/views/completed.vue')
+  },
+  {
+    path: '*',
+    redirect: { name: "all" }
   }
 ];
 
-const router = new Router({ routes });
+const router = new Router({ routes, linkActiveClass: 'selected' });
 
 export default router;

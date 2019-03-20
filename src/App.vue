@@ -1,17 +1,23 @@
 <template>
   <section class="todoapp">
     <todo-header />
-    <router-view />
+    <todo-main />
+    <todo-footer />
   </section>
-
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+
 import TodoHeader from "@/components/todo-header.vue";
+import TodoMain from "@/components/todo-main.vue";
+import TodoFooter from "@/components/todo-footer.vue";
+
 @Component({
   components: {
-    TodoHeader
+    TodoHeader,
+    TodoMain,
+    TodoFooter
   }
 })
 export default class App extends Vue {}
