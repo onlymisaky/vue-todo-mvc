@@ -2,7 +2,7 @@ import Vue from 'vue';
 import 'todomvc-app-css/index.css';
 import router from '@/route/router';
 import store from '@/store/index';
-import App from './App.vue';
+import App from './App';
 
 Vue.config.productionTip = false;
 

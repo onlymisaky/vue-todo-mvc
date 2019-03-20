@@ -1,14 +1,3 @@
-<template>
-  <input autofocus
-    autocomplete="off"
-    :placeholder="placeholder"
-    class="new-todo"
-    :value="value"
-    @input="onInput($event)"
-    @keyup.enter="onEnter">
-</template>
-
-<script lang="ts">
 import { Vue, Component, Prop, Emit, Model } from "vue-property-decorator";
 
 @Component
@@ -31,9 +20,21 @@ export default class TodoInput extends Vue {
     return value;
   }
 
-  @Emit("enter")
-  onEnter(e: Event): Event {
-    return e;
+  onEnter(e: KeyboardEvent): void {
+    if (e.keyCode === 13) {
+      this.$emit('enter', e);
+    }
   }
+
+  render() {
+    return (<input autofocus
+      autocomplete="off"
+      placeholder={this.placeholder}
+      class="new-todo"
+      value={this.value}
+      onInput={this.onInput}
+      onKeyup={this.onEnter} />)
+  }
+
 }
-</script>
+

@@ -1,25 +1,3 @@
-<template>
-  <li class="todo"
-    :class="{'completed': todo.completed, 'editing': editing}">
-    <div class="view">
-      <input type="checkbox"
-        class="toggle"
-        :checked="todo.completed"
-        @change="onToggle">
-      <label @dblclick="onDbClick">{{todo.title}}</label>
-      <button class="destroy"
-        @click="onRemove"></button>
-    </div>
-    <input type="text"
-      class="edit"
-      @blur="onEdit"
-      @keyup.esc="onCancelModify"
-      :value="todo.title"
-      ref="input">
-  </li>
-</template>
-
-<script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 import { Todo, TodoStore } from "@/types/todo";
@@ -73,5 +51,25 @@ export default class TodoListItem extends Vue {
   onRemove(): void {
     this.removeTodo(this.id);
   }
+
+  render() {
+    return (
+      <li class={{ 'todo': 1, 'completed': this.todo.completed, 'editing': this.editing }}>
+        <div class="view">
+          <input type="checkbox"
+            class="toggle"
+            checked={this.todo.completed}
+            onChange={this.onToggle} />
+          <label onDblclick={this.onDbClick}>{this.todo.title}</label>
+          <button class="destroy" onClick={this.onRemove}></button>
+        </div>
+        <input type="text"
+          class="edit"
+          onBlur={this.onEdit}
+          onKeyup={this.onCancelModify}
+          value={this.todo.title}
+          ref="input" />
+      </li>
+    )
+  }
 }
-</script>

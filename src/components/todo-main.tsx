@@ -1,16 +1,3 @@
-<template>
-  <section class="main"
-    v-if="todoList.length">
-    <input id="toggle-all"
-      type="checkbox"
-      class="toggle-all"
-      v-model="allDone">
-    <label for="toggle-all">Mark all as complete</label>
-    <router-view />
-  </section>
-</template>
-
-<script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
 import { TodoStore, Todo } from "@/types/todo";
@@ -33,5 +20,20 @@ export default class TodoMain extends Vue {
   set allDone(completed: boolean) {
     this.toggleAllTodo(completed);
   }
+
+  render() {
+    return this.todoList.length ?
+      (
+        <section class="main">
+          <input id="toggle-all"
+            type="checkbox"
+            class="toggle-all"
+            vModel={this.allDone} />
+          <label for="toggle-all">Mark all as complete</label>
+          <router-view />
+        </section>
+      )
+      : null;
+  }
 }
-</script>
+

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router, { RouteConfig } from 'vue-router';
-import All from '@/views/all.vue';
+import All from '@/views/all.tsx';
 
 Vue.use(Router);
 
@@ -18,12 +18,12 @@ const routes: RouteConfig[] = [
   {
     name: 'active',
     path: '/active',
-    component: () => import('@/views/active.vue')
+    component: () => import('@/views/active.tsx')
   },
   {
     name: 'completed',
     path: '/completed',
-    component: () => import('@/views/completed.vue')
+    component: () => import('@/views/completed.tsx')
   },
   {
     path: '*',

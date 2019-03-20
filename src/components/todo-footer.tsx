@@ -1,29 +1,6 @@
-<template>
-  <footer class="footer"
-    v-show="todoList.length">
-    <span class="todo-count">
-      <strong>{{remaining}}</strong> item left
-    </span>
-    <ul class="filters">
-      <li v-for="route in routes"
-        :key="route.name">
-        <router-link :to="{name:route.name}">
-          {{route.label}}
-        </router-link>
-      </li>
-    </ul>
-    <button class="clear-completed"
-      @click="onRemoveCompleted"
-      v-show="todoList.length > remaining">
-      Clear completed
-    </button>
-  </footer>
-
-</template>
-
-<script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
+
 import { Todo, TodoStore } from "@/types/todo";
 
 const TodoModule = namespace("todo");
@@ -61,5 +38,32 @@ export default class TodoFooter extends Vue {
   onRemoveCompleted() {
     this.removeCompletedTodo();
   }
+
+  render() {
+    return (
+      <footer class="footer" vShow={this.todoList.length}>
+        <span class="todo-count">
+          <strong>{this.remaining}</strong>
+          item left
+        </span>
+        <ul class="filters">
+          {this.routes.map(route => {
+            return (
+              <li key={route.name}>
+                <router-link to={{ name: route.name }}>
+                  {route.label}
+                </router-link>
+              </li>
+            )
+          })}
+        </ul >
+        <button class="clear-completed"
+          onClick={this.onRemoveCompleted}
+          vShow={this.todoList.length > this.remaining} >
+          Clear completed
+        </button>
+      </footer>
+    )
+  }
+
 }
-</script>
