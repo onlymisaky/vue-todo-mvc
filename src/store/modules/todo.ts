@@ -1,10 +1,11 @@
 import { Module } from 'vuex';
-import { Todo, TodoStore } from '@/types/todo'
+import { Todo, TodoStore } from '@/types/todo';
+import { loadTodos, saveTodos } from "@/utils/store";
 
 const todoModule: Module<TodoStore.State, any> = {
   namespaced: true,
   state: {
-    todoList: []
+    todoList: loadTodos()
   },
   getters: {
     idList: state => state.todoList.map(todo => todo.id),
@@ -13,7 +14,7 @@ const todoModule: Module<TodoStore.State, any> = {
   },
   mutations: {
     ADD_TODO(state, todo: Todo) {
-      state.todoList.push(todo)
+      state.todoList.push(todo);
     },
     EDIT_TODO_TITLE(state, { index, title }) {
       state.todoList[index].title = title;
