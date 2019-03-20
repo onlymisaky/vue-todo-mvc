@@ -70,6 +70,6 @@ export default class TodoListItem extends Vue {
           value={this.todo.title}
           ref="input" />
       </li>
-    )
+    );
   }
 }

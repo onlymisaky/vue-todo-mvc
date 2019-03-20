@@ -27,13 +27,15 @@ export default class TodoInput extends Vue {
   }
 
   render() {
-    return (<input autofocus
-      autocomplete="off"
-      placeholder={this.placeholder}
-      class="new-todo"
-      value={this.value}
-      onInput={this.onInput}
-      onKeyup={this.onEnter} />)
+    return (
+      <input autofocus
+        autocomplete="off"
+        placeholder={this.placeholder}
+        class="new-todo"
+        value={this.value}
+        onInput={this.onInput}
+        onKeyup={this.onEnter} />
+    );
   }
 
 }

@@ -63,7 +63,7 @@ export default class TodoFooter extends Vue {
           Clear completed
         </button>
       </footer>
-    )
+    );
   }
 
 }

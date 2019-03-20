@@ -7,6 +7,6 @@ export default class TodoList extends Vue {
       <ul class="todo-list">
         {this.$slots.todoListItem}
       </ul>
-    )
+    );
   }
 }

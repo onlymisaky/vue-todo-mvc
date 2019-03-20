@@ -24,7 +24,7 @@ export default class Active extends Vue {
           return (<todo-list-item slot="todoListItem" key={todo.id} todo={todo} />)
         })}
       </todo-list>
-    )
+    );
   }
 }
 

@@ -1,9 +1,8 @@
 import { Vue, Component, Watch } from "vue-property-decorator";
-
+import { State } from 'vuex-class';
 import TodoHeader from "@/components/todo-header.tsx";
 import TodoMain from "@/components/todo-main.tsx";
 import TodoFooter from "@/components/todo-footer.tsx";
-import { State } from 'vuex-class';
 import { Todo } from './types/todo';
 import { saveTodos } from "@/utils/store";
 
@@ -23,7 +22,6 @@ export default class App extends Vue {
   todoListChange(todos: Todo[]) {
     saveTodos(todos);
   }
-
 
   render() {
     return (

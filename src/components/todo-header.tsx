@@ -30,7 +30,7 @@ export default class TodoHeader extends Vue {
         <h1>todos</h1>
         <todo-input vModel={this.title} onEnter={this.onAddTodo} />
       </header>
-    )
+    );
   }
 }
 
