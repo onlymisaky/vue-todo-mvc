@@ -21,7 +21,6 @@ export default class App extends Vue {
 
   @Watch('todoList', { deep: true, immediate: true })
   todoListChange(todos: Todo[]) {
-    console.log(todos);
     saveTodos(todos);
   }
 
