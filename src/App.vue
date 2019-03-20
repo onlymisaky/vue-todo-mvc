@@ -7,11 +7,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-
+import { Vue, Component, Watch } from "vue-property-decorator";
+import { State } from "vuex-class";
 import TodoHeader from "@/components/todo-header.vue";
 import TodoMain from "@/components/todo-main.vue";
 import TodoFooter from "@/components/todo-footer.vue";
+import { saveTodos } from "@/utils/store.ts";
+import { Todo } from "@/types/todo";
 
 @Component({
   components: {
@@ -20,5 +22,13 @@ import TodoFooter from "@/components/todo-footer.vue";
     TodoFooter
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  @State(state => state.todo.todoList)
+  todoList!: Todo[];
+
+  @Watch("todoList", { deep: true, immediate: true })
+  todoListChange(todos: Todo[]) {
+    saveTodos(todos);
+  }
+}
 </script>
