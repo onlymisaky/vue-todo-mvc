@@ -5,7 +5,7 @@
       <input type="checkbox"
         class="toggle"
         :checked="todo.completed"
-        @change="onToggle">
+        @change="onToggle" />
       <label @dblclick="onDbClick">{{todo.title}}</label>
       <button class="destroy"
         @click="onRemove"></button>
@@ -15,7 +15,7 @@
       @blur="onEdit"
       @keyup.esc="onCancelModify"
       :value="todo.title"
-      ref="input">
+      ref="input" />
   </li>
 </template>
 

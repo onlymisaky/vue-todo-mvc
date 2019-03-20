@@ -5,7 +5,7 @@
     class="new-todo"
     :value="value"
     @input="onInput($event)"
-    @keyup.enter="onEnter">
+    @keyup.enter="onEnter" />
 </template>
 
 <script lang="ts">

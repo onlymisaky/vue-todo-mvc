@@ -4,7 +4,7 @@
     <input id="toggle-all"
       type="checkbox"
       class="toggle-all"
-      v-model="allDone">
+      v-model="allDone" />
     <label for="toggle-all">Mark all as complete</label>
     <router-view />
   </section>
