@@ -2,6 +2,7 @@
 const vueConfig = {
   // GitHub Pages
   outputDir: 'docs',
+  publicPath: '/docs/'
 };
 
 module.exports = vueConfig;
