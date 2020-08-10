@@ -2,7 +2,7 @@
 const vueConfig = {
   // GitHub Pages
   outputDir: 'docs',
-  publicPath: '/docs/'
+  publicPath: '/TodoMvc-vue/'
 };
 
 module.exports = vueConfig;
